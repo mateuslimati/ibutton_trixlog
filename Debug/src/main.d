@@ -32,7 +32,8 @@ src/main.o: ../src/main.c \
  /home/mateus/workspace/my_project/inc/gpio.h \
  /home/mateus/workspace/my_project/StdPeriph_Driver/inc/stm32f0xx_gpio.h \
  /home/mateus/workspace/my_project/inc/usart.h \
- /home/mateus/workspace/my_project/StdPeriph_Driver/inc/stm32f0xx_usart.h
+ /home/mateus/workspace/my_project/StdPeriph_Driver/inc/stm32f0xx_usart.h \
+ /home/mateus/workspace/my_project/inc/delay.h
 
 /home/mateus/workspace/my_project/CMSIS/device/stm32f0xx.h:
 
@@ -101,3 +102,5 @@ src/main.o: ../src/main.c \
 /home/mateus/workspace/my_project/inc/usart.h:
 
 /home/mateus/workspace/my_project/StdPeriph_Driver/inc/stm32f0xx_usart.h:
+
+/home/mateus/workspace/my_project/inc/delay.h:

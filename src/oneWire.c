@@ -74,22 +74,15 @@ unsigned char OW_reset_pulse(void){
 	unsigned char presence_detect;
 
   	drive_OW_low(); 				// Drive the bus low
-
- 	Delay_us(0x00F0);	  			// delay 480 microsecond (us)
- 	Delay_us(0x00F0);
-
+  	Delay_us(480);	  			// delay 480 microsecond (us)
  	drive_OW_high();  				// Release the bus
-
- 	Delay_us(0x0046);				// delay 70 microsecond (us)
-
+ 	Delay_us(70);				// delay 70 microsecond (us)
 	presence_detect = read_OW();	//Sample for presence pulse from slave
-
-	Delay_us(0x00CD);	  			// delay 410 microsecond (us)
-	Delay_us(0x00CD);
-
+	Delay_us(410);	  			// delay 410 microsecond (us)
 	drive_OW_high();		    	// Release the bus
-
-	return presence_detect;
+	if(presence_detect == 0x01)
+		return 0x00;
+	return 0x01;
 
 }
 
@@ -102,23 +95,23 @@ unsigned char OW_reset_pulse(void){
 *
 ***********************************************************************/
 
-void OW_write_bit (unsigned char write_bit){
+void OW_write_bit(unsigned char write_bit){
 
 	if(write_bit)
 	{
 		//writing a bit '1'
 		drive_OW_low(); 				// Drive the bus low
-		Delay_us(0x0006);				// delay 6 microsecond (us)
-		drive_OW_high ();  				// Release the bus
-		Delay_us(0x0040);				// delay 64 microsecond (us)
+		Delay_us(10);				// delay 6 microsecond (us)
+		drive_OW_high();  				// Release the bus
+		Delay_us(55);				// delay 64 microsecond (us)
 	}
 	else
 	{
 		//writing a bit '0'
 		drive_OW_low(); 				// Drive the bus low
-		Delay_us(0x003C);				// delay 60 microsecond (us)
+		Delay_us(65);				// delay 60 microsecond (us)
 		drive_OW_high();  				// Release the bus
-		Delay_us(0x000A);				// delay 10 microsecond for recovery (us)
+		Delay_us(5);				// delay 10 microsecond for recovery (us)
 	}
 }
 
@@ -137,13 +130,11 @@ unsigned char OW_read_bit(void){
 	unsigned char read_data;
 	//reading a bit
 	drive_OW_low(); 						// Drive the bus low
-	Delay_us(0x0006);						// delay 6 microsecond (us)
-	drive_OW_high ();  						// Release the bus
-	Delay_us(0x0009);						// delay 9 microsecond (us)
+	Delay_us(13);						// delay 6 microsecond (us)
 
 	read_data = read_OW();					//Read the status of OW_PIN
 
-	Delay_us(0x0037);						// delay 55 microsecond (us)
+	Delay_us(53);						// delay 55 microsecond (us)
 	return read_data;
 
 }
@@ -177,17 +168,16 @@ void OW_write_byte (unsigned char write_data){
 *
 ***********************************************************************/
 
-unsigned char OW_read_byte (void){
+unsigned char OW_read_byte(void){
 
-	unsigned char loop, result=0;
+	unsigned char bitMask;
+	unsigned char r = 0;
 
-	for (loop = 0; loop < 8; loop++)
-	{
+	for (bitMask = 0x01; bitMask; bitMask <<= 1){
+		if(OW_read_bit())
+			r |= bitMask;
 
-		result >>= 1; 				// shift the result to get it ready for the next bit to receive
-		if (OW_read_bit())
-		result |= 0x80;				// if result is one, then set MS-bit
 	}
-	return result;
+	return r;
 
 }

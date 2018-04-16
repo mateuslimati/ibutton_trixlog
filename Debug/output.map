@@ -32,14 +32,19 @@ __lock___atexit_recursive_mutex
                     0x1               /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-lock.o)
 __lock___arc4random_mutex
                     0x1               /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-lock.o)
+ROM_NO              0x8               src/ibutton.o
 __lock___env_recursive_mutex
                     0x1               /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-lock.o)
 __lock___sinit_recursive_mutex
                     0x1               /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-lock.o)
 __lock___malloc_recursive_mutex
                     0x1               /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-lock.o)
+LastFamilyDiscrepancy
+                    0x1               src/ibutton.o
 macro_delay         0x1               src/oneWire.o
+LastDeviceFlag      0x1               src/ibutton.o
 recvBuffer          0x81              src/usart.o
+LastDiscrepancy     0x1               src/ibutton.o
 __lock___at_quick_exit_mutex
                     0x1               /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-lock.o)
 __lock___dd_hash_mutex
@@ -2819,6 +2824,8 @@ Discarded input sections
  .text          0x0000000000000000        0x0 src/delay.o
  .data          0x0000000000000000        0x0 src/delay.o
  .bss           0x0000000000000000        0x0 src/delay.o
+ .text.delay_us
+                0x0000000000000000       0x38 src/delay.o
  .text._init_ms
                 0x0000000000000000       0x6c src/delay.o
  .text.Delay_ms
@@ -2967,6 +2974,8 @@ Discarded input sections
  .text          0x0000000000000000        0x0 src/ibutton.o
  .data          0x0000000000000000        0x0 src/ibutton.o
  .bss           0x0000000000000000        0x0 src/ibutton.o
+ .text.search   0x0000000000000000      0x25c src/ibutton.o
+ .text.crc8     0x0000000000000000       0xb6 src/ibutton.o
  .debug_macro   0x0000000000000000      0x8bc src/ibutton.o
  .debug_macro   0x0000000000000000       0x81 src/ibutton.o
  .debug_macro   0x0000000000000000       0x3a src/ibutton.o
@@ -3001,6 +3010,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x34 src/ibutton.o
  .debug_macro   0x0000000000000000       0x3a src/ibutton.o
  .debug_macro   0x0000000000000000      0x17f src/ibutton.o
+ COMMON         0x0000000000000000        0xb src/ibutton.o
+ .group         0x0000000000000000        0x8 src/main.o
  .group         0x0000000000000000        0x8 src/main.o
  .group         0x0000000000000000        0x8 src/main.o
  .group         0x0000000000000000        0x8 src/main.o
@@ -3075,6 +3086,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x3a src/main.o
  .debug_macro   0x0000000000000000       0x28 src/main.o
  .debug_macro   0x0000000000000000       0x46 src/main.o
+ .debug_macro   0x0000000000000000       0x16 src/main.o
  .group         0x0000000000000000        0x8 src/oneWire.o
  .group         0x0000000000000000        0x8 src/oneWire.o
  .group         0x0000000000000000        0x8 src/oneWire.o
@@ -3555,7 +3567,7 @@ LOAD /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.
                 0x0000000008000000                g_pfnVectors
                 0x00000000080000c0                . = ALIGN (0x4)
 
-.text           0x00000000080000c0     0x197c
+.text           0x00000000080000c0     0x1964
                 0x00000000080000c0                . = ALIGN (0x4)
  *(.text)
  .text          0x00000000080000c0       0x60 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crtbegin.o
@@ -3651,202 +3663,203 @@ LOAD /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.
  .text.SysTick_Config
                 0x0000000008001040       0x48 src/main.o
  .text.SysTick_Handler
-                0x0000000008001088       0x18 src/main.o
+                0x0000000008001088       0x24 src/main.o
                 0x0000000008001088                SysTick_Handler
  .text.DelayMil
-                0x00000000080010a0       0x54 src/main.o
-                0x00000000080010a0                DelayMil
- .text.main     0x00000000080010f4      0x120 src/main.o
+                0x00000000080010ac       0x48 src/main.o
+                0x00000000080010ac                DelayMil
+ .text.main     0x00000000080010f4      0x114 src/main.o
                 0x00000000080010f4                main
  .text.drive_OW_low
-                0x0000000008001214       0x24 src/oneWire.o
-                0x0000000008001214                drive_OW_low
+                0x0000000008001208       0x24 src/oneWire.o
+                0x0000000008001208                drive_OW_low
  .text.drive_OW_high
-                0x0000000008001238       0x24 src/oneWire.o
-                0x0000000008001238                drive_OW_high
- .text.read_OW  0x000000000800125c       0x44 src/oneWire.o
-                0x000000000800125c                read_OW
+                0x000000000800122c       0x24 src/oneWire.o
+                0x000000000800122c                drive_OW_high
+ .text.read_OW  0x0000000008001250       0x44 src/oneWire.o
+                0x0000000008001250                read_OW
  .text.OW_reset_pulse
-                0x00000000080012a0       0x46 src/oneWire.o
-                0x00000000080012a0                OW_reset_pulse
+                0x0000000008001294       0x4c src/oneWire.o
+                0x0000000008001294                OW_reset_pulse
  .text.OW_write_bit
-                0x00000000080012e6       0x46 src/oneWire.o
-                0x00000000080012e6                OW_write_bit
+                0x00000000080012e0       0x46 src/oneWire.o
+                0x00000000080012e0                OW_write_bit
  .text.OW_read_bit
-                0x000000000800132c       0x36 src/oneWire.o
-                0x000000000800132c                OW_read_bit
+                0x0000000008001326       0x2c src/oneWire.o
+                0x0000000008001326                OW_read_bit
  .text.OW_write_byte
-                0x0000000008001362       0x50 src/oneWire.o
-                0x0000000008001362                OW_write_byte
+                0x0000000008001352       0x50 src/oneWire.o
+                0x0000000008001352                OW_write_byte
  .text.OW_read_byte
-                0x00000000080013b2       0x52 src/oneWire.o
-                0x00000000080013b2                OW_read_byte
+                0x00000000080013a2       0x48 src/oneWire.o
+                0x00000000080013a2                OW_read_byte
+ *fill*         0x00000000080013ea        0x2 
  .text.SystemInit
-                0x0000000008001404       0x8c src/system_stm32f0xx.o
-                0x0000000008001404                SystemInit
+                0x00000000080013ec       0x8c src/system_stm32f0xx.o
+                0x00000000080013ec                SystemInit
  .text.SystemCoreClockUpdate
-                0x0000000008001490       0xd4 src/system_stm32f0xx.o
-                0x0000000008001490                SystemCoreClockUpdate
+                0x0000000008001478       0xd4 src/system_stm32f0xx.o
+                0x0000000008001478                SystemCoreClockUpdate
  .text.SetSysClock
-                0x0000000008001564       0xe0 src/system_stm32f0xx.o
+                0x000000000800154c       0xe0 src/system_stm32f0xx.o
  .text.USART1_LowLevel_Init
-                0x0000000008001644       0x70 src/usart.o
-                0x0000000008001644                USART1_LowLevel_Init
+                0x000000000800162c       0x70 src/usart.o
+                0x000000000800162c                USART1_LowLevel_Init
  .text.USART1_Init
-                0x00000000080016b4       0x60 src/usart.o
-                0x00000000080016b4                USART1_Init
+                0x000000000800169c       0x60 src/usart.o
+                0x000000000800169c                USART1_Init
  .text.USART1_DeInit
-                0x0000000008001714       0x14 src/usart.o
-                0x0000000008001714                USART1_DeInit
+                0x00000000080016fc       0x14 src/usart.o
+                0x00000000080016fc                USART1_DeInit
  .text.USART1_EnableRxInterrupt
-                0x0000000008001728       0x3c src/usart.o
-                0x0000000008001728                USART1_EnableRxInterrupt
+                0x0000000008001710       0x3c src/usart.o
+                0x0000000008001710                USART1_EnableRxInterrupt
  .text.USART1_PutByte
-                0x0000000008001764       0x38 src/usart.o
-                0x0000000008001764                USART1_PutByte
+                0x000000000800174c       0x38 src/usart.o
+                0x000000000800174c                USART1_PutByte
  .text.USART1_PutString
-                0x000000000800179c       0x2c src/usart.o
-                0x000000000800179c                USART1_PutString
+                0x0000000008001784       0x2c src/usart.o
+                0x0000000008001784                USART1_PutString
  .text.USART1_IRQHandler
-                0x00000000080017c8       0x38 src/usart.o
-                0x00000000080017c8                USART1_IRQHandler
+                0x00000000080017b0       0x38 src/usart.o
+                0x00000000080017b0                USART1_IRQHandler
  .text.Reset_Handler
-                0x0000000008001800       0x80 startup/startup_stm32f042.o
-                0x0000000008001800                Reset_Handler
+                0x00000000080017e8       0x80 startup/startup_stm32f042.o
+                0x00000000080017e8                Reset_Handler
  .text.Default_Handler
-                0x0000000008001880        0x2 startup/startup_stm32f042.o
-                0x0000000008001880                TIM1_CC_IRQHandler
-                0x0000000008001880                TSC_IRQHandler
-                0x0000000008001880                HardFault_Handler
-                0x0000000008001880                PendSV_Handler
-                0x0000000008001880                NMI_Handler
-                0x0000000008001880                I2C1_IRQHandler
-                0x0000000008001880                RCC_CRS_IRQHandler
-                0x0000000008001880                SPI1_IRQHandler
-                0x0000000008001880                EXTI2_3_IRQHandler
-                0x0000000008001880                ADC1_IRQHandler
-                0x0000000008001880                TIM17_IRQHandler
-                0x0000000008001880                CEC_CAN_IRQHandler
-                0x0000000008001880                RTC_IRQHandler
-                0x0000000008001880                PVD_VDDIO2_IRQHandler
-                0x0000000008001880                TIM16_IRQHandler
-                0x0000000008001880                TIM3_IRQHandler
-                0x0000000008001880                EXTI4_15_IRQHandler
-                0x0000000008001880                DMA1_Channel1_IRQHandler
-                0x0000000008001880                Default_Handler
-                0x0000000008001880                TIM14_IRQHandler
-                0x0000000008001880                DMA1_Channel4_5_IRQHandler
-                0x0000000008001880                EXTI0_1_IRQHandler
-                0x0000000008001880                USB_IRQHandler
-                0x0000000008001880                SPI2_IRQHandler
-                0x0000000008001880                SVC_Handler
-                0x0000000008001880                WWDG_IRQHandler
-                0x0000000008001880                TIM2_IRQHandler
-                0x0000000008001880                DMA1_Channel2_3_IRQHandler
-                0x0000000008001880                USART2_IRQHandler
-                0x0000000008001880                FLASH_IRQHandler
-                0x0000000008001880                TIM1_BRK_UP_TRG_COM_IRQHandler
- *fill*         0x0000000008001882        0x2 
+                0x0000000008001868        0x2 startup/startup_stm32f042.o
+                0x0000000008001868                TIM1_CC_IRQHandler
+                0x0000000008001868                TSC_IRQHandler
+                0x0000000008001868                HardFault_Handler
+                0x0000000008001868                PendSV_Handler
+                0x0000000008001868                NMI_Handler
+                0x0000000008001868                I2C1_IRQHandler
+                0x0000000008001868                RCC_CRS_IRQHandler
+                0x0000000008001868                SPI1_IRQHandler
+                0x0000000008001868                EXTI2_3_IRQHandler
+                0x0000000008001868                ADC1_IRQHandler
+                0x0000000008001868                TIM17_IRQHandler
+                0x0000000008001868                CEC_CAN_IRQHandler
+                0x0000000008001868                RTC_IRQHandler
+                0x0000000008001868                PVD_VDDIO2_IRQHandler
+                0x0000000008001868                TIM16_IRQHandler
+                0x0000000008001868                TIM3_IRQHandler
+                0x0000000008001868                EXTI4_15_IRQHandler
+                0x0000000008001868                DMA1_Channel1_IRQHandler
+                0x0000000008001868                Default_Handler
+                0x0000000008001868                TIM14_IRQHandler
+                0x0000000008001868                DMA1_Channel4_5_IRQHandler
+                0x0000000008001868                EXTI0_1_IRQHandler
+                0x0000000008001868                USB_IRQHandler
+                0x0000000008001868                SPI2_IRQHandler
+                0x0000000008001868                SVC_Handler
+                0x0000000008001868                WWDG_IRQHandler
+                0x0000000008001868                TIM2_IRQHandler
+                0x0000000008001868                DMA1_Channel2_3_IRQHandler
+                0x0000000008001868                USART2_IRQHandler
+                0x0000000008001868                FLASH_IRQHandler
+                0x0000000008001868                TIM1_BRK_UP_TRG_COM_IRQHandler
+ *fill*         0x000000000800186a        0x2 
  .text.__libc_init_array
-                0x0000000008001884       0x48 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-init.o)
-                0x0000000008001884                __libc_init_array
+                0x000000000800186c       0x48 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-init.o)
+                0x000000000800186c                __libc_init_array
  .text.startup.register_fini
-                0x00000000080018cc       0x18 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-__call_atexit.o)
- .text.atexit   0x00000000080018e4       0x10 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-atexit.o)
-                0x00000000080018e4                atexit
+                0x00000000080018b4       0x18 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-__call_atexit.o)
+ .text.atexit   0x00000000080018cc       0x10 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-atexit.o)
+                0x00000000080018cc                atexit
  .text.__libc_fini_array
-                0x00000000080018f4       0x34 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-fini.o)
-                0x00000000080018f4                __libc_fini_array
+                0x00000000080018dc       0x34 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-fini.o)
+                0x00000000080018dc                __libc_fini_array
  .text.__retarget_lock_acquire_recursive
-                0x0000000008001928        0x4 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-lock.o)
-                0x0000000008001928                __retarget_lock_acquire_recursive
+                0x0000000008001910        0x4 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-lock.o)
+                0x0000000008001910                __retarget_lock_acquire_recursive
  .text.__retarget_lock_release_recursive
-                0x000000000800192c        0x4 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-lock.o)
-                0x000000000800192c                __retarget_lock_release_recursive
+                0x0000000008001914        0x4 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-lock.o)
+                0x0000000008001914                __retarget_lock_release_recursive
  .text.__register_exitproc
-                0x0000000008001930       0xf4 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-__atexit.o)
-                0x0000000008001930                __register_exitproc
+                0x0000000008001918       0xf4 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-__atexit.o)
+                0x0000000008001918                __register_exitproc
  *(.glue_7)
- .glue_7        0x0000000008001a24        0x0 linker stubs
+ .glue_7        0x0000000008001a0c        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x0000000008001a24        0x0 linker stubs
+ .glue_7t       0x0000000008001a0c        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x0000000008001a24        0x0 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crtbegin.o
+ .eh_frame      0x0000000008001a0c        0x0 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crtbegin.o
  *(.init)
- .init          0x0000000008001a24        0x4 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crti.o
-                0x0000000008001a24                _init
- .init          0x0000000008001a28        0x8 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crtn.o
+ .init          0x0000000008001a0c        0x4 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crti.o
+                0x0000000008001a0c                _init
+ .init          0x0000000008001a10        0x8 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crtn.o
  *(.fini)
- .fini          0x0000000008001a30        0x4 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crti.o
-                0x0000000008001a30                _fini
- .fini          0x0000000008001a34        0x8 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crtn.o
-                0x0000000008001a3c                . = ALIGN (0x4)
-                0x0000000008001a3c                _etext = .
+ .fini          0x0000000008001a18        0x4 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crti.o
+                0x0000000008001a18                _fini
+ .fini          0x0000000008001a1c        0x8 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crtn.o
+                0x0000000008001a24                . = ALIGN (0x4)
+                0x0000000008001a24                _etext = .
 
-.vfp11_veneer   0x0000000008001a3c        0x0
- .vfp11_veneer  0x0000000008001a3c        0x0 linker stubs
+.vfp11_veneer   0x0000000008001a24        0x0
+ .vfp11_veneer  0x0000000008001a24        0x0 linker stubs
 
-.v4_bx          0x0000000008001a3c        0x0
- .v4_bx         0x0000000008001a3c        0x0 linker stubs
+.v4_bx          0x0000000008001a24        0x0
+ .v4_bx         0x0000000008001a24        0x0 linker stubs
 
-.iplt           0x0000000008001a3c        0x0
- .iplt          0x0000000008001a3c        0x0 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crtbegin.o
+.iplt           0x0000000008001a24        0x0
+ .iplt          0x0000000008001a24        0x0 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crtbegin.o
 
-.rodata         0x0000000008001a3c       0x3c
-                0x0000000008001a3c                . = ALIGN (0x4)
+.rodata         0x0000000008001a24       0x3c
+                0x0000000008001a24                . = ALIGN (0x4)
  *(.rodata)
- .rodata        0x0000000008001a3c       0x37 src/main.o
+ .rodata        0x0000000008001a24       0x37 src/main.o
  *(.rodata*)
- *fill*         0x0000000008001a73        0x1 
+ *fill*         0x0000000008001a5b        0x1 
  .rodata._global_impure_ptr
-                0x0000000008001a74        0x4 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-impure.o)
-                0x0000000008001a74                _global_impure_ptr
-                0x0000000008001a78                . = ALIGN (0x4)
+                0x0000000008001a5c        0x4 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-impure.o)
+                0x0000000008001a5c                _global_impure_ptr
+                0x0000000008001a60                . = ALIGN (0x4)
 
-.rel.dyn        0x0000000008001a78        0x0
- .rel.iplt      0x0000000008001a78        0x0 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crtbegin.o
+.rel.dyn        0x0000000008001a60        0x0
+ .rel.iplt      0x0000000008001a60        0x0 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crtbegin.o
 
-.ARM.extab      0x0000000008001a78        0x0
-                0x0000000008001a78                . = ALIGN (0x4)
+.ARM.extab      0x0000000008001a60        0x0
+                0x0000000008001a60                . = ALIGN (0x4)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x0000000008001a78                . = ALIGN (0x4)
+                0x0000000008001a60                . = ALIGN (0x4)
 
-.ARM            0x0000000008001a78        0x0
-                0x0000000008001a78                . = ALIGN (0x4)
-                0x0000000008001a78                __exidx_start = .
+.ARM            0x0000000008001a60        0x0
+                0x0000000008001a60                . = ALIGN (0x4)
+                0x0000000008001a60                __exidx_start = .
  *(.ARM.exidx*)
-                0x0000000008001a78                __exidx_end = .
-                0x0000000008001a78                . = ALIGN (0x4)
+                0x0000000008001a60                __exidx_end = .
+                0x0000000008001a60                . = ALIGN (0x4)
 
-.preinit_array  0x0000000008001a78        0x0
-                0x0000000008001a78                . = ALIGN (0x4)
-                0x0000000008001a78                PROVIDE (__preinit_array_start, .)
+.preinit_array  0x0000000008001a60        0x0
+                0x0000000008001a60                . = ALIGN (0x4)
+                0x0000000008001a60                PROVIDE (__preinit_array_start, .)
  *(.preinit_array*)
-                0x0000000008001a78                PROVIDE (__preinit_array_end, .)
-                0x0000000008001a78                . = ALIGN (0x4)
+                0x0000000008001a60                PROVIDE (__preinit_array_end, .)
+                0x0000000008001a60                . = ALIGN (0x4)
 
-.init_array     0x0000000008001a78        0x8
-                0x0000000008001a78                . = ALIGN (0x4)
-                0x0000000008001a78                PROVIDE (__init_array_start, .)
+.init_array     0x0000000008001a60        0x8
+                0x0000000008001a60                . = ALIGN (0x4)
+                0x0000000008001a60                PROVIDE (__init_array_start, .)
  *(SORT(.init_array.*))
  .init_array.00000
-                0x0000000008001a78        0x4 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-__call_atexit.o)
+                0x0000000008001a60        0x4 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-__call_atexit.o)
  *(.init_array*)
- .init_array    0x0000000008001a7c        0x4 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crtbegin.o
-                0x0000000008001a80                PROVIDE (__init_array_end, .)
-                0x0000000008001a80                . = ALIGN (0x4)
+ .init_array    0x0000000008001a64        0x4 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crtbegin.o
+                0x0000000008001a68                PROVIDE (__init_array_end, .)
+                0x0000000008001a68                . = ALIGN (0x4)
 
-.fini_array     0x0000000008001a80        0x4
-                0x0000000008001a80                . = ALIGN (0x4)
-                0x0000000008001a80                PROVIDE (__fini_array_start, .)
+.fini_array     0x0000000008001a68        0x4
+                0x0000000008001a68                . = ALIGN (0x4)
+                0x0000000008001a68                PROVIDE (__fini_array_start, .)
  *(SORT(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x0000000008001a80        0x4 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crtbegin.o
-                0x0000000008001a84                PROVIDE (__fini_array_end, .)
-                0x0000000008001a84                . = ALIGN (0x4)
-                0x0000000008001a84                _sidata = LOADADDR (.data)
+ .fini_array    0x0000000008001a68        0x4 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crtbegin.o
+                0x0000000008001a6c                PROVIDE (__fini_array_end, .)
+                0x0000000008001a6c                . = ALIGN (0x4)
+                0x0000000008001a6c                _sidata = LOADADDR (.data)
 
-.data           0x0000000020000000      0x454 load address 0x0000000008001a84
+.data           0x0000000020000000      0x454 load address 0x0000000008001a6c
                 0x0000000020000000                . = ALIGN (0x4)
                 0x0000000020000000                _sdata = .
  *(.data)
@@ -3864,46 +3877,48 @@ LOAD /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.
                 0x0000000020000454                . = ALIGN (0x4)
                 0x0000000020000454                _edata = .
 
-.jcr            0x0000000020000454        0x0 load address 0x0000000008001ed8
+.jcr            0x0000000020000454        0x0 load address 0x0000000008001ec0
  .jcr           0x0000000020000454        0x0 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crtbegin.o
 
-.igot.plt       0x0000000020000454        0x0 load address 0x0000000008001ed8
+.igot.plt       0x0000000020000454        0x0 load address 0x0000000008001ec0
  .igot.plt      0x0000000020000454        0x0 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crtbegin.o
                 0x0000000020000454                . = ALIGN (0x4)
 
-.bss            0x0000000020000454       0x44 load address 0x0000000008001ed8
-                0x0000000020000454                _sbss = .
-                0x0000000020000454                __bss_start__ = _sbss
+.bss            0x0000000020000458       0x4c load address 0x0000000008001ec0
+                0x0000000020000458                _sbss = .
+                0x0000000020000458                __bss_start__ = _sbss
  *(.bss)
- .bss           0x0000000020000454       0x1c /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crtbegin.o
- .bss           0x0000000020000470        0x4 src/main.o
-                0x0000000020000470                Milliseconds
+ .bss           0x0000000020000458       0x1c /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crtbegin.o
+ *fill*         0x0000000020000474        0x4 
+ .bss           0x0000000020000478        0x8 src/main.o
+                0x0000000020000478                Milliseconds
  *(.bss*)
  *(COMMON)
- COMMON         0x0000000020000474       0x21 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-lock.o)
-                0x0000000020000474                __lock___atexit_recursive_mutex
-                0x0000000020000478                __lock___arc4random_mutex
-                0x000000002000047c                __lock___env_recursive_mutex
-                0x0000000020000480                __lock___sinit_recursive_mutex
-                0x0000000020000484                __lock___malloc_recursive_mutex
-                0x0000000020000488                __lock___at_quick_exit_mutex
-                0x000000002000048c                __lock___dd_hash_mutex
-                0x0000000020000490                __lock___tz_mutex
-                0x0000000020000494                __lock___sfp_recursive_mutex
-                0x0000000020000498                . = ALIGN (0x4)
- *fill*         0x0000000020000495        0x3 
-                0x0000000020000498                _ebss = .
-                0x0000000020000498                __bss_end__ = _ebss
+ COMMON         0x0000000020000480       0x21 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-lock.o)
+                0x0000000020000480                __lock___atexit_recursive_mutex
+                0x0000000020000484                __lock___arc4random_mutex
+                0x0000000020000488                __lock___env_recursive_mutex
+                0x000000002000048c                __lock___sinit_recursive_mutex
+                0x0000000020000490                __lock___malloc_recursive_mutex
+                0x0000000020000494                __lock___at_quick_exit_mutex
+                0x0000000020000498                __lock___dd_hash_mutex
+                0x000000002000049c                __lock___tz_mutex
+                0x00000000200004a0                __lock___sfp_recursive_mutex
+                0x00000000200004a4                . = ALIGN (0x4)
+ *fill*         0x00000000200004a1        0x3 
+                0x00000000200004a4                _ebss = .
+                0x00000000200004a4                __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x0000000020000498      0x400 load address 0x0000000008001ed8
-                0x0000000020000498                . = ALIGN (0x8)
-                0x0000000020000498                PROVIDE (end, .)
+                0x00000000200004a4      0x404 load address 0x0000000008001ec0
+                0x00000000200004a8                . = ALIGN (0x8)
+ *fill*         0x00000000200004a4        0x4 
+                0x00000000200004a8                PROVIDE (end, .)
                 [!provide]                        PROVIDE (_end, .)
-                0x0000000020000498                . = (. + _Min_Heap_Size)
-                0x0000000020000898                . = (. + _Min_Stack_Size)
- *fill*         0x0000000020000498      0x400 
-                0x0000000020000898                . = ALIGN (0x8)
+                0x00000000200004a8                . = (. + _Min_Heap_Size)
+                0x00000000200008a8                . = (. + _Min_Stack_Size)
+ *fill*         0x00000000200004a8      0x400 
+                0x00000000200008a8                . = ALIGN (0x8)
 
 /DISCARD/
  libc.a(*)
@@ -3965,37 +3980,37 @@ LOAD /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.
                 0x0000000000000427       0x1e /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/crtn.o
 OUTPUT(my_project.elf elf32-littlearm)
 
-.debug_info     0x0000000000000000     0x590b
+.debug_info     0x0000000000000000     0x5b88
  .debug_info    0x0000000000000000      0x5fa StdPeriph_Driver/src/stm32f0xx_gpio.o
  .debug_info    0x00000000000005fa      0x376 StdPeriph_Driver/src/stm32f0xx_misc.o
  .debug_info    0x0000000000000970      0xa6f StdPeriph_Driver/src/stm32f0xx_rcc.o
  .debug_info    0x00000000000013df     0x1c86 StdPeriph_Driver/src/stm32f0xx_tim.o
  .debug_info    0x0000000000003065      0xe6f StdPeriph_Driver/src/stm32f0xx_usart.o
- .debug_info    0x0000000000003ed4      0x3d9 src/delay.o
- .debug_info    0x00000000000042ad      0x30b src/gpio.o
- .debug_info    0x00000000000045b8       0xdf src/ibutton.o
- .debug_info    0x0000000000004697      0x56d src/main.o
- .debug_info    0x0000000000004c04      0x30f src/oneWire.o
- .debug_info    0x0000000000004f13      0x30c src/system_stm32f0xx.o
- .debug_info    0x000000000000521f      0x681 src/usart.o
- .debug_info    0x00000000000058a0       0x6b startup/startup_stm32f042.o
+ .debug_info    0x0000000000003ed4      0x4a5 src/delay.o
+ .debug_info    0x0000000000004379      0x30b src/gpio.o
+ .debug_info    0x0000000000004684      0x292 src/ibutton.o
+ .debug_info    0x0000000000004916      0x56d src/main.o
+ .debug_info    0x0000000000004e83      0x30d src/oneWire.o
+ .debug_info    0x0000000000005190      0x30c src/system_stm32f0xx.o
+ .debug_info    0x000000000000549c      0x681 src/usart.o
+ .debug_info    0x0000000000005b1d       0x6b startup/startup_stm32f042.o
 
-.debug_abbrev   0x0000000000000000     0x10eb
+.debug_abbrev   0x0000000000000000     0x118e
  .debug_abbrev  0x0000000000000000      0x19b StdPeriph_Driver/src/stm32f0xx_gpio.o
  .debug_abbrev  0x000000000000019b      0x143 StdPeriph_Driver/src/stm32f0xx_misc.o
  .debug_abbrev  0x00000000000002de      0x204 StdPeriph_Driver/src/stm32f0xx_rcc.o
  .debug_abbrev  0x00000000000004e2      0x18c StdPeriph_Driver/src/stm32f0xx_tim.o
  .debug_abbrev  0x000000000000066e      0x174 StdPeriph_Driver/src/stm32f0xx_usart.o
- .debug_abbrev  0x00000000000007e2      0x149 src/delay.o
- .debug_abbrev  0x000000000000092b      0x115 src/gpio.o
- .debug_abbrev  0x0000000000000a40       0x9d src/ibutton.o
- .debug_abbrev  0x0000000000000add      0x1bc src/main.o
- .debug_abbrev  0x0000000000000c99      0x149 src/oneWire.o
- .debug_abbrev  0x0000000000000de2      0x159 src/system_stm32f0xx.o
- .debug_abbrev  0x0000000000000f3b      0x19e src/usart.o
- .debug_abbrev  0x00000000000010d9       0x12 startup/startup_stm32f042.o
+ .debug_abbrev  0x00000000000007e2      0x14b src/delay.o
+ .debug_abbrev  0x000000000000092d      0x115 src/gpio.o
+ .debug_abbrev  0x0000000000000a42      0x12f src/ibutton.o
+ .debug_abbrev  0x0000000000000b71      0x1bc src/main.o
+ .debug_abbrev  0x0000000000000d2d      0x158 src/oneWire.o
+ .debug_abbrev  0x0000000000000e85      0x159 src/system_stm32f0xx.o
+ .debug_abbrev  0x0000000000000fde      0x19e src/usart.o
+ .debug_abbrev  0x000000000000117c       0x12 startup/startup_stm32f042.o
 
-.debug_aranges  0x0000000000000000      0x880
+.debug_aranges  0x0000000000000000      0x898
  .debug_aranges
                 0x0000000000000000       0x80 StdPeriph_Driver/src/stm32f0xx_gpio.o
  .debug_aranges
@@ -4007,38 +4022,38 @@ OUTPUT(my_project.elf elf32-littlearm)
  .debug_aranges
                 0x0000000000000510      0x1a0 StdPeriph_Driver/src/stm32f0xx_usart.o
  .debug_aranges
-                0x00000000000006b0       0x40 src/delay.o
+                0x00000000000006b0       0x48 src/delay.o
  .debug_aranges
-                0x00000000000006f0       0x20 src/gpio.o
+                0x00000000000006f8       0x20 src/gpio.o
  .debug_aranges
-                0x0000000000000710       0x28 src/ibutton.o
+                0x0000000000000718       0x38 src/ibutton.o
  .debug_aranges
-                0x0000000000000738       0x40 src/main.o
+                0x0000000000000750       0x40 src/main.o
  .debug_aranges
-                0x0000000000000778       0x58 src/oneWire.o
+                0x0000000000000790       0x58 src/oneWire.o
  .debug_aranges
-                0x00000000000007d0       0x30 src/system_stm32f0xx.o
+                0x00000000000007e8       0x30 src/system_stm32f0xx.o
  .debug_aranges
-                0x0000000000000800       0x58 src/usart.o
+                0x0000000000000818       0x58 src/usart.o
  .debug_aranges
-                0x0000000000000858       0x28 startup/startup_stm32f042.o
+                0x0000000000000870       0x28 startup/startup_stm32f042.o
 
-.debug_ranges   0x0000000000000000      0x7b8
+.debug_ranges   0x0000000000000000      0x7d0
  .debug_ranges  0x0000000000000000       0x70 StdPeriph_Driver/src/stm32f0xx_gpio.o
  .debug_ranges  0x0000000000000070       0x20 StdPeriph_Driver/src/stm32f0xx_misc.o
  .debug_ranges  0x0000000000000090      0x150 StdPeriph_Driver/src/stm32f0xx_rcc.o
  .debug_ranges  0x00000000000001e0      0x2f0 StdPeriph_Driver/src/stm32f0xx_tim.o
  .debug_ranges  0x00000000000004d0      0x190 StdPeriph_Driver/src/stm32f0xx_usart.o
- .debug_ranges  0x0000000000000660       0x30 src/delay.o
- .debug_ranges  0x0000000000000690       0x10 src/gpio.o
- .debug_ranges  0x00000000000006a0       0x18 src/ibutton.o
- .debug_ranges  0x00000000000006b8       0x30 src/main.o
- .debug_ranges  0x00000000000006e8       0x48 src/oneWire.o
- .debug_ranges  0x0000000000000730       0x20 src/system_stm32f0xx.o
- .debug_ranges  0x0000000000000750       0x48 src/usart.o
- .debug_ranges  0x0000000000000798       0x20 startup/startup_stm32f042.o
+ .debug_ranges  0x0000000000000660       0x38 src/delay.o
+ .debug_ranges  0x0000000000000698       0x10 src/gpio.o
+ .debug_ranges  0x00000000000006a8       0x28 src/ibutton.o
+ .debug_ranges  0x00000000000006d0       0x30 src/main.o
+ .debug_ranges  0x0000000000000700       0x48 src/oneWire.o
+ .debug_ranges  0x0000000000000748       0x20 src/system_stm32f0xx.o
+ .debug_ranges  0x0000000000000768       0x48 src/usart.o
+ .debug_ranges  0x00000000000007b0       0x20 startup/startup_stm32f042.o
 
-.debug_macro    0x0000000000000000     0x25b2
+.debug_macro    0x0000000000000000     0x25bb
  .debug_macro   0x0000000000000000      0x18e StdPeriph_Driver/src/stm32f0xx_gpio.o
  .debug_macro   0x000000000000018e      0x17f StdPeriph_Driver/src/stm32f0xx_gpio.o
  .debug_macro   0x000000000000030d      0x18a StdPeriph_Driver/src/stm32f0xx_misc.o
@@ -4055,27 +4070,27 @@ OUTPUT(my_project.elf elf32-littlearm)
  .debug_macro   0x0000000000001cef      0x1c4 src/ibutton.o
  .debug_macro   0x0000000000001eb3       0x28 src/ibutton.o
  .debug_macro   0x0000000000001edb       0x46 src/ibutton.o
- .debug_macro   0x0000000000001f21      0x1ba src/main.o
- .debug_macro   0x00000000000020db      0x1be src/oneWire.o
- .debug_macro   0x0000000000002299      0x180 src/system_stm32f0xx.o
- .debug_macro   0x0000000000002419      0x199 src/usart.o
+ .debug_macro   0x0000000000001f21      0x1c3 src/main.o
+ .debug_macro   0x00000000000020e4      0x1be src/oneWire.o
+ .debug_macro   0x00000000000022a2      0x180 src/system_stm32f0xx.o
+ .debug_macro   0x0000000000002422      0x199 src/usart.o
 
-.debug_line     0x0000000000000000     0x5b37
+.debug_line     0x0000000000000000     0x5bec
  .debug_line    0x0000000000000000      0x700 StdPeriph_Driver/src/stm32f0xx_gpio.o
  .debug_line    0x0000000000000700      0x5ef StdPeriph_Driver/src/stm32f0xx_misc.o
  .debug_line    0x0000000000000cef      0x963 StdPeriph_Driver/src/stm32f0xx_rcc.o
  .debug_line    0x0000000000001652      0xe70 StdPeriph_Driver/src/stm32f0xx_tim.o
  .debug_line    0x00000000000024c2      0xa04 StdPeriph_Driver/src/stm32f0xx_usart.o
- .debug_line    0x0000000000002ec6      0x63b src/delay.o
- .debug_line    0x0000000000003501      0x5a7 src/gpio.o
- .debug_line    0x0000000000003aa8      0x614 src/ibutton.o
- .debug_line    0x00000000000040bc      0x697 src/main.o
- .debug_line    0x0000000000004753      0x6bd src/oneWire.o
- .debug_line    0x0000000000004e10      0x621 src/system_stm32f0xx.o
- .debug_line    0x0000000000005431      0x672 src/usart.o
- .debug_line    0x0000000000005aa3       0x94 startup/startup_stm32f042.o
+ .debug_line    0x0000000000002ec6      0x650 src/delay.o
+ .debug_line    0x0000000000003516      0x5a7 src/gpio.o
+ .debug_line    0x0000000000003abd      0x6a5 src/ibutton.o
+ .debug_line    0x0000000000004162      0x6a9 src/main.o
+ .debug_line    0x000000000000480b      0x6ba src/oneWire.o
+ .debug_line    0x0000000000004ec5      0x621 src/system_stm32f0xx.o
+ .debug_line    0x00000000000054e6      0x672 src/usart.o
+ .debug_line    0x0000000000005b58       0x94 startup/startup_stm32f042.o
 
-.debug_str      0x0000000000000000    0x4ad7a
+.debug_str      0x0000000000000000    0x4ae55
  .debug_str     0x0000000000000000    0x48b2c StdPeriph_Driver/src/stm32f0xx_gpio.o
                                       0x48cda (size before relaxing)
  .debug_str     0x0000000000048b2c      0x16d StdPeriph_Driver/src/stm32f0xx_misc.o
@@ -4086,19 +4101,19 @@ OUTPUT(my_project.elf elf32-littlearm)
                                       0x496ad (size before relaxing)
  .debug_str     0x0000000000049f36      0x7fc StdPeriph_Driver/src/stm32f0xx_usart.o
                                       0x49302 (size before relaxing)
- .debug_str     0x000000000004a732       0x96 src/delay.o
-                                      0x48ba3 (size before relaxing)
- .debug_str     0x000000000004a7c8       0x29 src/gpio.o
+ .debug_str     0x000000000004a732       0xb4 src/delay.o
+                                      0x48c8e (size before relaxing)
+ .debug_str     0x000000000004a7e6       0x29 src/gpio.o
                                       0x48b9a (size before relaxing)
- .debug_str     0x000000000004a7f1      0x1da src/ibutton.o
-                                      0x48b6d (size before relaxing)
- .debug_str     0x000000000004a9cb      0x1c9 src/main.o
-                                      0x48e87 (size before relaxing)
- .debug_str     0x000000000004ab94       0xb4 src/oneWire.o
-                                      0x48b9d (size before relaxing)
- .debug_str     0x000000000004ac48       0x6b src/system_stm32f0xx.o
+ .debug_str     0x000000000004a80f      0x296 src/ibutton.o
+                                      0x48c42 (size before relaxing)
+ .debug_str     0x000000000004aaa5      0x1c9 src/main.o
+                                      0x48ecc (size before relaxing)
+ .debug_str     0x000000000004ac6e       0xb5 src/oneWire.o
+                                      0x48b9e (size before relaxing)
+ .debug_str     0x000000000004ad23       0x6b src/system_stm32f0xx.o
                                       0x48ac4 (size before relaxing)
- .debug_str     0x000000000004acb3       0xc7 src/usart.o
+ .debug_str     0x000000000004ad8e       0xc7 src/usart.o
                                       0x4903a (size before relaxing)
 
 .comment        0x0000000000000000       0x7f
@@ -4116,23 +4131,23 @@ OUTPUT(my_project.elf elf32-littlearm)
  .comment       0x000000000000007f       0x80 src/system_stm32f0xx.o
  .comment       0x000000000000007f       0x80 src/usart.o
 
-.debug_frame    0x0000000000000000     0x1f5c
+.debug_frame    0x0000000000000000     0x1fb8
  .debug_frame   0x0000000000000000      0x1b0 StdPeriph_Driver/src/stm32f0xx_gpio.o
  .debug_frame   0x00000000000001b0       0x70 StdPeriph_Driver/src/stm32f0xx_misc.o
  .debug_frame   0x0000000000000220      0x524 StdPeriph_Driver/src/stm32f0xx_rcc.o
  .debug_frame   0x0000000000000744      0xbb0 StdPeriph_Driver/src/stm32f0xx_tim.o
  .debug_frame   0x00000000000012f4      0x630 StdPeriph_Driver/src/stm32f0xx_usart.o
- .debug_frame   0x0000000000001924       0xac src/delay.o
- .debug_frame   0x00000000000019d0       0x30 src/gpio.o
- .debug_frame   0x0000000000001a00       0x4c src/ibutton.o
- .debug_frame   0x0000000000001a4c       0xb4 src/main.o
- .debug_frame   0x0000000000001b00      0x108 src/oneWire.o
- .debug_frame   0x0000000000001c08       0x6c src/system_stm32f0xx.o
- .debug_frame   0x0000000000001c74      0x108 src/usart.o
- .debug_frame   0x0000000000001d7c       0x20 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/libgcc.a(_udivsi3.o)
- .debug_frame   0x0000000000001d9c       0x2c /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-init.o)
- .debug_frame   0x0000000000001dc8       0x54 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-__call_atexit.o)
- .debug_frame   0x0000000000001e1c       0x28 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-atexit.o)
- .debug_frame   0x0000000000001e44       0x2c /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-fini.o)
- .debug_frame   0x0000000000001e70       0xb0 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-lock.o)
- .debug_frame   0x0000000000001f20       0x3c /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-__atexit.o)
+ .debug_frame   0x0000000000001924       0xcc src/delay.o
+ .debug_frame   0x00000000000019f0       0x30 src/gpio.o
+ .debug_frame   0x0000000000001a20       0x8c src/ibutton.o
+ .debug_frame   0x0000000000001aac       0xb0 src/main.o
+ .debug_frame   0x0000000000001b5c      0x108 src/oneWire.o
+ .debug_frame   0x0000000000001c64       0x6c src/system_stm32f0xx.o
+ .debug_frame   0x0000000000001cd0      0x108 src/usart.o
+ .debug_frame   0x0000000000001dd8       0x20 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/libgcc.a(_udivsi3.o)
+ .debug_frame   0x0000000000001df8       0x2c /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-init.o)
+ .debug_frame   0x0000000000001e24       0x54 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-__call_atexit.o)
+ .debug_frame   0x0000000000001e78       0x28 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-atexit.o)
+ .debug_frame   0x0000000000001ea0       0x2c /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-fini.o)
+ .debug_frame   0x0000000000001ecc       0xb0 /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-lock.o)
+ .debug_frame   0x0000000000001f7c       0x3c /home/mateus/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a(lib_a-__atexit.o)

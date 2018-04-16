@@ -19,8 +19,9 @@
 #define	INPUT 	1
 #define	CLEARBIN 0
 
-
 unsigned char Detect_Slave_Device(void);
+unsigned char search(uint8_t *newAddr);
+uint8_t crc8(const uint8_t *addr, uint8_t len);
 void hex_ascii(unsigned char display_data);
 
 #endif /* IBUTTON_H_ */

@@ -12,8 +12,9 @@
 #include "stm32f0xx.h"
 #include "ibutton.h"
 #include "usart.h"
+#include "delay.h"
 
-volatile uint32_t Milliseconds = 0;
+volatile uint64_t Milliseconds = 0;
 
 
 void SysTick_Handler(void){
@@ -42,7 +43,7 @@ int main(void){
 	while(1){
 
 		GPIO_ResetBits(GPIOB, GPIO_Pin_3);
-		if(Detect_Slave_Device()){
+		if(!Detect_Slave_Device()){
 			USART1_PutString("SLAVE Device is present\r\n");
 			OW_write_byte(0x33); //Here is the code to read a serial number
 			USART1_PutString("SERIAL NUMBER:  \r\n");
@@ -51,8 +52,7 @@ int main(void){
 
 			for(temp = 0; temp<8; temp++){
 				hex_ascii(serial_number[temp]);
-				if(temp%2 != 0)
-					USART1_PutString(" ");
+				USART1_PutString(" ");
 			}//Convert Hex Value into ASCII and send to terminal
 			USART1_PutString("\n\r");
 			GPIO_SetBits(GPIOB, GPIO_Pin_3);
@@ -60,4 +60,5 @@ int main(void){
 		}
 
 	}
+
 }
